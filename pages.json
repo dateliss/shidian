@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": ""
 			}
 		}
 	    ,{
@@ -24,6 +24,22 @@
             }
             
         }
+        ,{
+            "path" : "pages/works/works",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+			"path": "pages/modelling/modelling",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -31,5 +47,25 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "时点"
+			},{
+				"pagePath": "pages/modelling/modelling",
+				"text": "造型"
+			},{
+				"pagePath": "pages/assistant/assistant",
+				"text": "发型师"
+			},{
+				"pagePath": "pages/works/works",
+				"text": "精选作品"
+			},{
+				"pagePath": "pages/admin/admin",
+				"text": "我的"
+			}
+		]
+	}
 }
