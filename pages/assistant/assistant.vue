@@ -2,7 +2,7 @@
 	<view class="app">
 		<view class="add">
 			<view class="nnn">
-				<input type="text">
+				<img src="" alt="">
 			</view>
 		</view>
 	</view>
