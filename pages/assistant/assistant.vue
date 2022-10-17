@@ -1,6 +1,8 @@
 <template>
 	<view class="app">
-		
+		<view class="">
+			
+		</view>
 	</view>
 </template>
 
