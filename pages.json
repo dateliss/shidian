@@ -40,6 +40,15 @@
 				"enablePullDownRefresh": false
 			}
 		}
+        ,{
+            "path" : "pages/index/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -13,5 +13,9 @@
 </script>
 
 <style>
+	.app{
+		font-family: 'Courier New', Courier, monospace;
+		color: #5E5E5E;
+	}
 	/*每个页面公共css */
 </style>
