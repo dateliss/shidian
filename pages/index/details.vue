@@ -11,43 +11,59 @@
 		</uni-swiper-dot>
 		<view class="classification">
 			<view>
-			    <uni-segmented-control :current="fen" :values="items" @clickItem="onClickItem" styleType="text" activeColor="#E9BC7B"></uni-segmented-control>
+			    <uni-segmented-control :current="fen" :values="items" @clickItem="onClickItem" styleType="text" activeColor="#E9BC7B" class="ad"></uni-segmented-control>
 			    <view class="content">
 			        <view v-show="fen === 0">
 						<view class="bulk"></view>
 			            <uni-segmented-control :current="genre" :values="genres" @clickItem="genress" styleType="text" activeColor="#E9BC7B"></uni-segmented-control>
 			            <view class="content1">
 			                <view v-show="genre === 0">
-			                    <view class="details" v-for="(item,index) in details" :key="index">
-			                    	<view class="img">
-										<img :src= item.img alt="">
-			                    	</view>
-									<view class="detail">
-										<h4>{{item.name}}</h4>
-										<p class="designer">{{item.designer}}</p>
-										<p class="price">￥{{item.price}}</p>
-									</view>
-									<view class="buy">
-										
-									</view>
-			                    </view>
-								<uni-collapse>
-									<uni-collapse-item title="折叠内容">
-										<view class="details" v-for="(item,index) in details" :key="index">
-											<view class="img">
-												<img :src= item.img alt="">
-											</view>
-											<view class="detail">
-												<h4>{{item.name}}</h4>
-												<p class="designer">{{item.designer}}</p>
-												<p class="price">￥{{item.price}}</p>
-											</view>
-											<view class="buy">
-												
-											</view>
+			                    <uni-row class="details" v-for="(item,index) in detail" :key="index" v-show="con==1">
+			                    	<uni-col :span="6">
+			                    		<view class="img">
+			                    			<img :src= item.img alt="">
+			                    		</view>
+			                    	</uni-col>
+									<uni-col :span="11">
+										<view class="detail">
+											<h4>{{item.name}}</h4>
+											<p class="designer">{{item.designer}}</p>
+											<p class="price">￥{{item.price}}</p>
 										</view>
-									</uni-collapse-item>
-								</uni-collapse>
+									</uni-col>
+									<uni-col :span="6">
+										<view class="buy">
+											<button class="button" size="mini">购买</button>
+										</view>
+									</uni-col>
+			                    </uni-row>
+								<view class="zhan" @tap="zhan()" v-show="con == 1">
+									<p>更多{{details.length-3}}个团购</p>
+								</view>
+								
+								<uni-row class="details" v-for="(item,index) in details" :key="index+10" v-show="con!=1">
+									<uni-col :span="6">
+										<view class="img">
+											<img :src= item.img alt="">
+										</view>
+									</uni-col>
+									<uni-col :span="11">
+										<view class="detail">
+											<h4>{{item.name}}</h4>
+											<p class="designer">{{item.designer}}</p>
+											<p class="price">￥{{item.price}}</p>
+										</view>
+									</uni-col>
+									<uni-col :span="6">
+										<view class="buy">
+											<button class="button" size="mini">购买</button>
+											<p>半年消费{{item.count}}</p>
+										</view>
+									</uni-col>
+								</uni-row>
+								<view class="zhan" @tap="zhan()"  v-show="con == 0">
+									<p>收起</p>
+								</view>
 			                </view>
 			                <view v-show="genre === 1">
 			                    选项卡2的内容
@@ -141,7 +157,7 @@
 						count:45
 					},{
 						img:'../../static/image/wanda/wanda10.jpg',
-						name:'贴片无痕接发[ 50厘米优质发 ]',
+						name:'贴片无痕接发[50厘米优质发]',
 						price:798,
 						designer:'资深设计师',
 						count:15
@@ -152,7 +168,9 @@
 						designer:'技术总监',
 						count:3
 					},
-				]
+				],
+				detail:[],
+				con:1
 			};
 		},
 		onLoad(option) {
@@ -167,6 +185,8 @@
 					console.log(this.swiperheight)
 				}
 			});
+			this.detail.push(this.details[0],this.details[1],this.details[2])
+			console.log(this.detail);
 		},
 		methods:{
 			change(e) {
@@ -180,6 +200,13 @@
 			genress(e){
 				if(this.genre !== e.currentIndex){
 					this.genre = e.currentIndex
+				}
+			},
+			zhan(){
+				if(this.con == 0){
+					this.con = 1
+				}else{
+					this.con = 0
 				}
 			}
 		}
@@ -197,6 +224,11 @@
 		}
 	}
 	.classification{
+		position: relative;
+		.ad{
+			position: sticky;
+			top: 20;
+		}
 		.content{
 			.bulk{
 				height: 20rpx;
@@ -204,7 +236,6 @@
 			.content1{
 				.details{
 					margin-top: 20px;
-					display: flex;
 					.img{
 						height: 80px;
 						margin-right: 20rpx;
@@ -225,6 +256,24 @@
 							font-size: 40rpx;
 						}
 					}
+					.buy{
+						.button{
+							border-radius: 30px;
+							border: none;
+							background-color: #FF5A01;
+							color: #F0F0F0;
+							float: right;
+						}
+						p{
+							
+						}
+					}
+				}
+				.zhan{
+					border-bottom: 1px solid #F0F0F0;
+					padding: 5px 0;
+					text-align: center;
+					margin-bottom: 10px;
 				}
 			}
 		}
